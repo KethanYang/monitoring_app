@@ -22,7 +22,7 @@ pipeline {
                 sshagent(['monitoring-ssh']) {
                     sh '''
                     scp -r ./* ethan2@192.168.56.31:/home/ethan2/monitoring_app/
-                    ssh ethan2@192.168.56.31 'sudo systemctl restart monitoring.service'
+                    ssh -o StrictHostKeyChecking=no ethan2@192.168.56.31 'sudo systemctl restart monitoring.service'
                     '''
                 }
             }

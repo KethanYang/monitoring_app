@@ -21,7 +21,7 @@ pipeline {
             steps {
                 sshagent(['monitoring-ssh']) {
                     sh '''
-                    rsync -av --exclude='.git' --exclude='Jenkinsfile' ./ ethan2@192.168.56.31:/home/ethan2/monitoring_app/
+                    rsync -av -e "ssh -o StrictHostKeyChecking=no" --exclude='.git' --exclude='Jenkinsfile' ./ ethan2@192.168.56.31:/home/ethan2/monitoring_app/
                     ssh -o StrictHostKeyChecking=no ethan2@192.168.56.31 'sudo systemctl restart monitoring.service'
                     '''
                 }
